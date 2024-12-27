@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas de jQuery</title>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga beatae perspiciatis necessitatibus nesciunt. Itaque nemo dolorum necessitatibus reprehenderit repellendus praesentium libero deserunt, natus quis! Eius optio harum aperiam rerum quidem.</p>
+    <p id="teste">Isso é um parágrafo de teste</p>
+    <p class="p-yellow">Outro parágrafo</p>
+    <div class="p-yellow">Texto dentro de uma div</div>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+    <script>
+        $(document).ready(function() {
+            // $('p').html('Inserico com jQuery')
+            // $('#teste').html('Inserido com jQuery')
+            // $('.p-yellow').html('Inserido com jQuery')
+            $('p.p-yellow').html('Inserido com jQuery')
+        });        
+    </script>
+</body>
+</html>
