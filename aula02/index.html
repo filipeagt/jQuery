@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Aulas de jQuery</title>
+</head>
+<body>
+    <p id="teste"></p>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+    <script>
+        // JavaScript puro
+        // document.getElementById('teste').innerHTML = "Teste";
+
+        // jQuery
+        $("#teste").html("Teste");
+
+        $(document).ready(function() {  // Semelhante ao evento onload
+            $('p').addClass('nome-da-classe')
+        })
+        
+    </script>
+</body>
+</html>
