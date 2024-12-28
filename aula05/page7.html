@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas de jQuery</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .d-none {
+            display: none;
+        }
+
+        .d-inline {
+            display: inline-block;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+        }
+
+        button {
+            padding: 40px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        #flip,
+        #painel {
+            padding:  5px;
+            text-align: center;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+        }
+        #painel {
+            display: none;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-inline red"></div>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.red').click(function() {
+                $(this).css('background-color', 'blue').slideUp(2000).slideDown(2000);
+            });        
+        });        
+    </script>
+</body>
+</html>
