@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas de jQuery</title>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga beatae perspiciatis necessitatibus nesciunt. Itaque nemo dolorum necessitatibus reprehenderit repellendus praesentium libero deserunt, natus quis! Eius optio harum aperiam rerum quidem.</p>
+    <p id="teste">Isso é um parágrafo de teste</p>
+    <p class="p-yellow">Outro parágrafo</p>
+    <div class="p-yellow">Texto dentro de uma div</div>
+    <hr>
+    <input type="text" id="campotexto" placeholder="Digite algo" style="padding: 50px;">
+    <button id="botao" style="padding: 50px;">Clique aqui</button>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#botao').click(function() { //dblclick
+                // alert('Clicou no botão!');
+                $('p').hide();
+                $('div').hide();
+                $('hr').hide();
+            });
+            $('#teste').click(function() {
+                $(this).html('Mudei quando fui clicado');
+            });
+            // $('#botao').mousedown(function() { // mouseenter, mouseleave, mouseup
+            //     alert('Ativou o mouse down');
+            // });
+            $('#botao').hover(function() {
+                $(this).text('Entrou mouse');
+            },
+            function() {
+                $(this).text('Saiu o mouse');
+            });
+            $('#campotexto').blur(function() { // focus
+                $(this).css('background-color', 'yellow');
+            });
+            $('#campotexto').focus();
+            // $('#botao').on('click', function() {
+            //     alert('on(click)');
+            // });
+            $('#botao').on({
+                mouseenter: function() {
+                    $(this).css('background-color', 'red');
+                },
+                click: function() {
+                    $(this).css('background-color', 'blue');
+                },
+                mouseleave: function() {
+                    $(this).css('background-color', 'gray');
+                }
+            });
+        });        
+    </script>
+</body>
+</html>
