@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas jQuery</title>
+    <style>
+        body {
+            text-align: center;
+            /* background: blue; */
+        }
+
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>O jQuery pode manipular o DOM</h1>
+    <h2>DOM = Document Object Model</h2>
+    <p>Em outras palavras é a arvore de elementos do nosso código. O jQuery pode acessar e atualizar dinamicamente o conteúdo, a estrutura e o estilo de um documento. <br>
+    Tudo pode ser modificado, adicionado ou removido usando jQuery.</p>
+
+    <input type="text" id="texto" placeholder="Digite algo">
+    <br><br>
+    <a href="https://google.com" id="link">Link para o google</a>
+    <button id="botao">Verificar Link</button>
+    <br><br>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="logo google" style="border: 1px solid black;">
+
+    <div id="teste">
+        <p>Parágrafo</p>
+        <p>Parágrafo</p>
+        <p>Parágrafo</p>
+        <p>Parágrafo</p>
+        <p>Parágrafo</p>
+    </div>
+
+    <br><br>
+    <button id="botao1">Modificar o título h1</button><br><br>
+    <button id="botao2">Modificar o título h2</button><br><br>
+    <button id="botao3">Atribuir valor ao input</button><br><br>
+    <button id="botao4">Trocar o link</button><br><br>
+    <button id="botao5">Trocar a imagem</button><br><br>
+    <button id="botao6">Deletar título</button><br><br>
+    <button id="botao7">Esvaziar Div</button><br><br>
+    <hr>
+    <button id="botao8">Adicionar classe CSS</button><br><br>
+    <button id="botao9">Remover classe CSS</button><br><br>
+    <button id="botao10">Toggle classe CSS</button><br><br>
+    <button id="botao11">Tamanho da imagem</button><br><br>
+
+
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // var textoH1 = $('h1').html();
+            // var textoP = $('p').text();
+            // alert(textoP);
+            /*
+            $('#texto').blur(function() {
+                var valor = $(this).val();
+                alert(`Foi digitado ${valor}`)
+            });
+            
+            $('#botao').click(function() {
+                var link = $('#link').attr('href')
+                alert(`O link vai para ${link}`)
+            });
+            
+            $('#botao').click(function () {
+                var src = $('img').attr('src')
+                alert(src)
+            })
+            */
+            $('#botao1').click(function() {
+                $('h1').prepend('Adicionei texto com jQuery ');
+                // $('body').append('<div style="margin: 1%; width: 150px; height: 150px; display: inline-block; background-color: red"></div>')
+            });
+            $('#botao2').click(function() {
+                $('h2').html('<strong>Mudei o h2</strong> com <em>jQuery</em>');
+            });
+            $('#botao3').click(function() {
+                $('#texto').val('Filipe Almeida');
+            });
+            $('#botao4').click(function() {
+                $('#link').text('Ir para YouTube')
+                $('#link').attr('href', 'https://youtube.com');
+            });
+            $('#botao5').click(function() {
+                $('img').attr('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/502px-Logo_of_YouTube_%282015-2017%29.svg.png');
+            });
+            $('#botao6').click(function () {
+                $('h1').remove();
+            });
+            $('#botao7').click(function () {
+                $('#teste').empty();
+            });
+
+            $('#botao8').click(function () {
+                // var cor = $('body').css('background');
+                // alert(cor)
+                // $('body').css('background', 'orange');
+                $('#link').addClass('red');
+            });
+            $('#botao9').click(function () {
+                $('#link').removeClass('red');
+            });
+            $('#botao10').click(function () {
+                $('#link').toggleClass('red');
+            });
+            $('#botao11').click(function () {
+                /*
+                var larguraImg = $('img').width();
+                var alturaImg = $('img').height();
+                alert(`A imagem tem ${larguraImg} x ${alturaImg} px`);
+                */
+                $('img').width(300);
+                $('img').height(300);
+            });
+        });
+    </script>
+</body>
+</html>
