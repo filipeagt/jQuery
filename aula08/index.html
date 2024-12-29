@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas jQuery</title>
+    <style>
+        body {
+            text-align: center;
+            /* background: blue; */
+        }
+    </style>
+</head>
+<body>
+
+    <button> CLIQUE AQUI </button>
+    <p></p>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+
+    <script>
+        /*
+        $.noConflict();
+        jQuery(document).ready(function() {
+            jQuery('button').click(function() {
+                jQuery('p').text('Adicionou texto com botão');
+            });
+        });
+        */
+        var jq = $.noConflict();
+        jq(document).ready(function() {
+            jq('button').click(function() {
+                jq('p').text('Adicionou texto com botão');
+            });
+        });
+    </script>
+</body>
+</html>
