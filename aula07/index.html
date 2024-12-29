@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas jQuery</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conhecendo o AJAX</h1>
+    <div id="teste">
+        <p>Um conteúdo inicial</p>
+    </div>
+
+    <br>
+
+    <button id="botao">Clique para carregar conteúdo externo</button>
+    <hr>
+    <br><br>
+
+    <input id="cep" type="text" placeholder="Digite o seu CEP"><br><br>
+    <input id="cidade" type="text" placeholder="Cidade"><br><br>
+    <input id="uf" type="text" placeholder="Estado"><br><br>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+
+    <script>
+        
+        $(document).ready(function() {            
+            $('#botao').click(function() {
+                $('#teste').load('teste.txt');
+            });
+            /*
+            $('h1').mouseover(function() {
+                $('#teste').load('teste.txt');
+            });
+            
+            $('#cep').blur(function() {
+                var valor = $(this).val();
+                $.get('https://viacep.com.br/ws/' + valor + '/json/', function(dados, status) {
+                    console.log(status);
+                    if(status == 'success') {
+                        $('#cidade').val(dados.localidade);
+                        $('#uf').val(dados.uf);
+                    } else {
+                        alert('Houve um problema ao requisitar')
+                    }
+                    
+                });
+                $.post('https://seusite.com.br', {nome: 'Filipe', idade: 32}, function(dados, status) {
+
+                });
+            });
+            */
+            $('#cep').blur(function() {
+                var valor = $(this).val();                
+                $.ajax({
+                    url: 'https://viacep.com.br/ws/' + valor + '/json/',
+                    type: 'GET',
+                    success: function(dados, status) {
+                        $('#cidade').val(dados.localidade);
+                        $('#uf').val(dados.uf);
+                    },
+                    error: function() {
+                        alert('Houve um problema ao requisitar')
+                    }
+                });
+            });
+            
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas de jQuery</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .tabela {
+            display: none;
+            width: 80%;
+            border: 1px solid gray;
+            border-radius: 5px;
+            margin-top: 2%;
+            background: #eeeeee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Exemplo de AJAX</h1>
+    <h2>Tabela FIPE</h2>
+
+    <select id="marcas">
+        <option selected disabled>Selecione a Marca</option>
+    </select>
+
+    <select id="veiculos">
+        <option selected disabled>Selecione o veículo</option>
+    </select>
+
+    <select id="ano_modelo">
+        <option selected disabled>Selecione ano / modelo</option>
+    </select>
+
+    <div class="tabela"></div>
+
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            //PEGAR AS MARCAS
+            $.get("http://fipeapi.appspot.com/api/1/carros/marcas.json", function (data, status) {
+                var tamanho = data.length;
+                for (i = 0; i < tamanho; i++) {
+                    $("#marcas").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                }
+            });
+
+            $("#marcas").change(function () {
+                id_marca = $(this).val();
+
+                $("#veiculos").html("<option selected disabled>Selecione o veículo</option>");
+                $("#ano_modelo").html(" <option selected disabled>Selecione o ano / modelo</option>");
+
+                //console.log('O id da marca selecionado: ' + id_marca);
+
+                //PEGAR O VEICULO
+                $.get("http://fipeapi.appspot.com/api/1/carros/veiculos/" + id_marca + ".json", function (data, status) {
+                    var tamanho = data.length;
+                    //console.log(data);
+                    for (i = 0; i < tamanho; i++) {
+                        $("#veiculos").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                    }
+                });
+
+            })
+
+            $("#veiculos").change(function () {
+                id_veiculo = $(this).val();
+
+                $("#ano_modelo").html(" <option selected disabled>Selecione o ano / modelo</option>");
+
+                //DETALHES DO VEICULO
+                $.get("http://fipeapi.appspot.com/api/1/carros/veiculo/" + id_marca + "/" + id_veiculo + ".json", function (data, status) {
+                    var tamanho = data.length;
+                    // console.log(data);
+                    for (i = 0; i < tamanho; i++) {
+                        $("#ano_modelo").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                    }
+                });
+
+            });
+
+            $("#ano_modelo").change(function () {
+                id_anoModelo = $(this).val();
+
+                //DETALHES DOS VALORES
+                $.get("http://fipeapi.appspot.com/api/1/carros/veiculo/" + id_marca + "/" + id_veiculo + "/" + id_anoModelo + ".json", function (data, status) {
+                    var tamanho = data.length;
+                    //console.log(data);
+                    $(".tabela").html(`
+                        <h3>${data.marca} - ${data.name} <br> (${data.ano_modelo} / ${data.combustivel}) </h3>
+                        <p>Código FIP: ${data.fipe_codigo}</p><br>
+                        <b style="font-size:40px; color:green">${data.preco}</b><br>
+                        <br><p><i> ${data.referencia} </i></p>
+                        `);
+                    $(".tabela").css("display", "inline-block");
+                    //for (i = 0; i < tamanho; i++) {
+                    //    $("#ano_modelo").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                    //}
+                });
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>
