@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas jQuery</title>
+    <style>
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            margin-left: 10%;
+        }
+        th, 
+        td {            
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 8px;
+        }
+        input {
+            margin-left: 10%;
+            margin-bottom: 1%;
+            padding: 8px;
+        }
+        ul {
+            margin-left: 10%;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="busca" placeholder="Busca na Tabela"><br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="MinhaTabela">
+            <tr>
+                <td>Filipe</td>
+                <td>Almeida</td>
+                <td>filipeagt.92@gmail.com</td>
+            </tr>
+            <tr>
+                <td>Augusto</td>
+                <td>Almeida</td>
+                <td>augusto.92@gmail.com</td>
+            </tr>
+            <tr>
+                <td>Taís</td>
+                <td>Almeida</td>
+                <td>taisleticia5@hotmail.com</td>
+            </tr>
+            <tr>
+                <td>Letícia</td>
+                <td>Almeida</td>
+                <td>leticia5@hotmail.com</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+
+    <input type="text" id="busca2" placeholder="Busca na Lista">
+
+    <ul id="MinhaLista">
+        <li>Arroz</li>
+        <li>Feijão</li>
+        <li>Leite</li>
+        <li>Carne</li>
+    </ul>
+
+    <script src="js/jquery-3.7.1.min.js.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#busca').on('keyup', function() {
+                var valor = $(this).val().toLowerCase();
+                $('#MinhaTabela tr').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(valor) > -1);
+                });
+            });
+
+            $('#busca2').keyup(function() {
+                var valor = $(this).val().toLowerCase()
+                $('#MinhaLista li').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(valor) > -1);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
